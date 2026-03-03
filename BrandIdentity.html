@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Identity | Novic Studios</title>
+
+  <style>
+    /* ==================================================
+   ROOT
+================================================== */
+    :root {
+      --bg: #0d0d0d;
+      --card: #151515;
+      --text: #ffffff;
+      --muted: #b3b3b3;
+      --accent: #00f2c3;
+      --radius: 22px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* ==================================================
+   BACK BUTTON
+================================================== */
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-4px);
+    }
+
+    /* ==================================================
+   HERO (FULL SCREEN WITH IMAGE TAG)
+================================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(13, 13, 13, 0.6),
+          rgba(13, 13, 13, 0.95));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding: 0 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: whitesmoke;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 14px 34px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ==================================================
+   SECTIONS
+================================================== */
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 100px 20px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 32px;
+    }
+
+    /* ==================================================
+   IMAGE GRID
+================================================== */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .image-grid.large {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .image-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-card span {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .image-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+
+    /* ==================================================
+   FULLSCREEN ICON
+================================================== */
+    .fullscreen-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: 0.3s var(--ease);
+      backdrop-filter: blur(8px);
+    }
+
+    .image-card:hover .fullscreen-btn {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .fullscreen-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+/* Ensure button is clickable */
+.image-card img {
+  position: relative;
+  z-index: 1;
+}
+
+.fullscreen-btn {
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* FULLSCREEN OVERLAY */
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+}
+
+.fullscreen-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fullscreen-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+  transform: scale(0.95);
+  transition: transform 0.4s var(--ease);
+}
+
+.fullscreen-overlay.active img {
+  transform: scale(1);
+}
+
+
+    /* ==================================================
+   BLACK INFO SECTION
+================================================== */
+    .info-section {
+      background: #000;
+      text-align: center;
+      border-radius: 50px;
+    }
+
+    .info-section p {
+      max-width: 720px;
+      margin: auto;
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    /* ==================================================
+   FOOTER
+================================================== */
+    footer {
+      background: #000;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .footer-text {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ==================================================
+   REVEAL ANIMATION
+================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s var(--ease);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="back-btn" onclick="history.back()">← Back</button>
+
+  <!-- HERO -->
+  <header class="hero reveal">
+    <img src="/hero images//download (56).png" alt="Brand Identity Design">
+    <div class="hero-content">
+      <h1>Brand Identity Design</h1>
+      <p>
+        Logos, systems, and visual identities built for clarity,
+        consistency, and long-term growth.
+      </p>
+      <a href="#logos" class="btn">View Work</a>
+    </div>
+  </header>
+
+  <!-- LOGOS -->
+  <section id="logos" class="reveal">
+    <h2>Logo Designs</h2>
+    <div class="image-grid">
+      <div class="image-card"><img src="/created-logos/bento box.jpg">
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button>
+      </div>
+      <div class="image-card"><img src="/created-logos//Teamo-LOGO SQURE.png"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/webmint.png"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/vsteel.jpg"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/dosovuja.jpg"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/BLOOM THEORY.jpg"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/project 1 local branding .png"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/elvin clothing.png"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/shaan.jpg"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/NO LIMITS red cross.jpg"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/holiday time.png"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/created-logos/komori black.png"><button class="fullscreen-btn"
+          aria-label="View fullscreen">
+          ⛶
+        </button></div>
+
+    </div>
+  </section>
+
+  <!-- BRAND SYSTEM -->
+  <section class="reveal">
+    <h2>Brand System</h2>
+    <div class="image-grid large">
+      <div class="image-card"><img src="/brand guidline/brand guidline (bloom theory).jpg"><span>Color Palette</span>
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button>
+      </div>
+      <div class="image-card"><img src="/brand guidline/brand guidline (bento box).jpg"><span>Typography</span>
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button>
+      </div>
+      <div class="image-card"><img src="/brand guidline/brand guidline (cha o kotha).jpg"><span>Grid System</span>
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button>
+      </div>
+      <div class="image-card"><img src="/brand guidline/shaan brand guidline.jpg"><span>Grid System</span>
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLACK SECTION -->
+  <section class="info-section reveal">
+    <p>
+      We don’t just design logos.<br>
+      We design systems that keep brands consistent,
+      recognizable, and future-ready.
+    </p>
+  </section>
+
+  <!-- MOCKUPS -->
+  <section class="reveal">
+    <h2>Brand Mockups</h2>
+    <div class="image-grid">
+      <div class="image-card"><img src="/brand mockup/board.jpg"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/brand mockup/Free Fabric Apron Branding Mockup.jpg"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/brand mockup/perfume 3.jpg"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="/brand mockup/Virtualthreads.png"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+    </div>
+  </section>
+
+  <!-- SOCIAL
+  <section class="reveal">
+    <h2>Social & Digital Assets</h2>
+    <div class="image-grid">
+      <div class="image-card"><img src="images/social1.jpg"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="images/social2.jpg"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+      <div class="image-card"><img src="images/social3.jpg"><button class="fullscreen-btn" aria-label="View fullscreen">
+          ⛶
+        </button></div>
+    </div>
+  </section> -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Novic Studios</div>
+    <div class="footer-text">
+      Crafting meaningful brand identities & digital experiences.
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Brand Identity</a>
+      <a href="#">Web Design</a>
+      <a href="#">Social Media</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+<div class="fullscreen-overlay" id="fullscreenOverlay">
+  <img id="fullscreenImage" alt="Fullscreen preview">
+</div>
+
+  <script>
+    /* ==================================================
+       SCROLL REVEAL
+    ================================================== */
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    reveals.forEach(el => observer.observe(el));
+
+
+    /* ==================================================
+       FULLSCREEN IMAGE SYSTEM
+    ================================================== */
+    const overlay = document.getElementById("fullscreenOverlay");
+    const overlayImg = document.getElementById("fullscreenImage");
+
+    document.querySelectorAll(".image-card").forEach(card => {
+      // Skip hero images automatically
+      if (card.closest(".hero")) return;
+
+      const btn = card.querySelector(".fullscreen-btn");
+      const img = card.querySelector("img");
+
+      if (!btn || !img) return;
+
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        overlayImg.src = img.src;
+        overlay.classList.add("active");
+      });
+    });
+
+    // Close on click
+    overlay.addEventListener("click", () => {
+      overlay.classList.remove("active");
+    });
+
+    // Close on ESC
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        overlay.classList.remove("active");
+      }
+    });
+
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>

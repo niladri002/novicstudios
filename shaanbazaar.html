@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaan Bazaar Case Study</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #ffffff;
+            color: #333;
+        }
+
+
+        .floating-back {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 8px 18px;
+            background: #ffffff;
+            color: #333;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+            z-index: 1000;
+            transition: .3s;
+        }
+
+        .floating-back:hover {
+            background: #f84612;
+            color: #fff;
+        }
+
+        /* HERO */
+        /* PREMIUM HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10%;
+            background: url('https://images.unsplash.com/photo-1516274626895-055a99214f08?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        /* Dark Gradient Overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                    rgba(0, 0, 0, 0.85),
+                    rgba(0, 0, 0, 0.6));
+        }
+
+        /* Content Card */
+        .hero-content {
+            position: relative;
+            max-width: 650px;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+            animation: fadeUp 1.2s ease forwards;
+            transform: translateY(40px);
+            opacity: 0;
+        }
+
+        /* Heading */
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #f84612;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph */
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-btn {
+            background: #f84612;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s ease;
+        }
+
+        .primary-btn:hover {
+            background: #ff5a26;
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+        }
+
+        /* Animation */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* SECTION */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #f84612;
+            margin-bottom: 40px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* CARD */
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: .4s;
+        }
+
+        .card:hover img {
+            transform: scale(1.08);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background: rgba(248, 70, 18, 0.95);
+            color: #fff;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* REAL LIFE SECTION */
+        .real-life {
+            background: #f7f7f7;
+        }
+
+        /* RESULTS */
+        .results {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .result-box {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .result-box h3 {
+            font-size: 2rem;
+            color: #f84612;
+            margin-bottom: 10px;
+        }
+
+        /* WEBSITE & MOTION SECTION */
+        .motion {
+            background: #f7f7f7;
+            padding: 100px 10%;
+            color: #333;
+        }
+
+        .motion .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #f84612;
+        }
+
+        /* GRID LAYOUT */
+        .video-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* VIDEO */
+        .video-wrapper video {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* WEBSITE FRAME */
+        .video-wrapper iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            background: #fff;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .video-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .video-wrapper iframe {
+                height: 400px;
+            }
+        }
+
+        .website-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* IFRAME */
+        .website-box iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        /* VISIT BUTTON */
+        .visit-btn {
+            align-self: center;
+            padding: 12px 35px;
+            background: #f84612;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .visit-btn:hover {
+            background: #d9370d;
+            transform: translateY(-3px);
+        }
+
+
+
+
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            background: #f84612;
+            color: #fff;
+            padding: 70px 10%;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #fff;
+            color: #f84612;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+
+        /* STORE LOCATION */
+        .store-location {
+            background: #f7f7f7;
+        }
+
+        .location-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .location-details h3 {
+            color: #f84612;
+            margin-bottom: 15px;
+        }
+
+        .location-details p {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .map-container iframe {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        @media(max-width:768px) {
+            .location-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        @media(max-width:768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="floating-back">← Back</a>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <h1>Shaan Bazaar</h1>
+
+            <p>
+                Complete Retail Branding, Store Execution & Campaign Strategy
+                for a Real-Life Shopping Mall in Ashoknagar.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#real" class="primary-btn">View Case Study</a>
+                <a href="https://shaanbazaar2.netlify.app/" target="_blank" class="secondary-btn">
+                    Visit Website
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJECT OVERVIEW -->
+    <section>
+        <h2 class="section-title">Project Overview</h2>
+        <p>
+            Shaan Bazaar is a live retail branding project where I handled logo identity,
+            color strategy, store signage, in-store visuals, promotional campaigns,
+            and digital marketing creatives. The goal was to create a bold retail
+            presence that attracts walk-in customers and builds trust in the local market.
+        </p>
+    </section>
+
+    <!-- REAL LIFE STORE REFERENCES -->
+    <section class="real-life" id="real">
+        <h2 class="section-title">Real-Life Execution</h2>
+
+        <div class="grid">
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/Gemini_Generated_Image_j1tpnaj1tpnaj1tp.png" alt="">
+                <div class="overlay">Store Front Branding</div>
+            </div>
+
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/cash counter pop (5ft x 4 ft).jpg" alt="">
+                <div class="overlay">Cash Counter pop</div>
+            </div>
+
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/Non-woven Free Shopping Bag Mockup PSD.jpg" alt="">
+                <div class="overlay">Shopping bags</div>
+            </div>
+
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/TAG2.jpg" alt="">
+                <div class="overlay">TAG DESIGN</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAMPAIGN DESIGNS -->
+    <section>
+        <h2 class="section-title">Campaign Creatives</h2>
+
+        <div class="grid">
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/hype 2.jpg" alt="">
+                <div class="overlay">Location pin</div>
+            </div>
+
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/SHAAN BAZZAR FACEBOOK POST 1.png" alt="">
+                <div class="overlay">Opening soon</div>
+            </div>
+
+            <div class="card">
+                <img src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/SHAAN BAZZAR FACEBOOK POST 4 option 2_.jpg" alt="">
+                <div class="overlay">Cartain</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section>
+        <h2 class="section-title">Impact & Results</h2>
+
+        <div class="results">
+            <div class="result-box">
+                <h3>+20%</h3>
+                <p>Increase in Walk-ins</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Consistent</h3>
+                <p>Retail Brand Identity</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Stronger</h3>
+                <p>Local Market Visibility</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WEBSITE & MOTION SECTION -->
+    <section class="motion">
+        <h2 class="section-title">Website & Motion Work</h2>
+
+        <div class="video-wrapper">
+
+            <!-- Logo Motion -->
+            <video controls autoplay loop muted>
+                <source src="/LETEST CREATIVE OUTCOME/SHAAN BAZZAR/logo.mp4" type="video/mp4">
+            </video>
+
+            <!-- Website Preview -->
+            <div class="website-box">
+                <iframe src="https://shaanbazaar2.netlify.app/"></iframe>
+
+                <a href="https://shaanbazaar2.netlify.app/" target="_blank" class="visit-btn">
+                    Visit Live Website
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- STORE LOCATION -->
+    <section class="store-location">
+        <h2 class="section-title">Store Location</h2>
+
+        <div class="location-wrapper">
+
+            <div class="location-details">
+                <h3>Shaan Bazaar</h3>
+                <p><strong>Type:</strong> Shopping & Lifestyle Store</p>
+                <p><strong>Location:</strong> Ashoknagar, West Bengal, India</p>
+                <p>
+                    A neighborhood Shopping mall designed to deliver a modern shopping
+                    experience with strong visual branding and customer-focused layout.
+                </p>
+            </div>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3677.0263800001835!2d88.61962079999999!3d22.838513499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8bbdc5ed52851%3A0x6f7ce2606d2716a5!2sSHAAN%20BAZAAR!5e0!3m2!1sen!2sin!4v1769866127762!5m2!1sen!2sin"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Need Retail Branding That Works in Real Life?</h2>
+        <a href="#">Let’s Build Your Brand</a>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

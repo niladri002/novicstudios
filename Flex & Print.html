@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex & Letter Design Portfolio – Niladri</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================= GLOBAL ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+
+    /*========================= back button =========================*/
+
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+
+    /* ================= SECTION STRUCTURE ================= */
+    .section {
+      padding: 100px 8%;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 70px auto;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      opacity: 0.65;
+      line-height: 1.6;
+    }
+
+    /* ================= GRID SYSTEM ================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    /* ================= CARD ================= */
+    .card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #111;
+      aspect-ratio: 4/3;
+      transition: 0.4s ease;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    }
+
+    .card-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-weight: 600;
+      font-size: 16px;
+      z-index: 2;
+    }
+
+    /* ================= FULLSCREEN BUTTON ================= */
+    .card-fullscreen {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 3;
+    }
+
+    .card:hover .card-fullscreen {
+      opacity: 1;
+    }
+
+    .card-fullscreen:hover {
+      background: #ff00c8;
+      box-shadow: 0 0 15px #ff00c8;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.342), rgba(0, 0, 0, 0.85));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 65px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ffffff, #c4eeff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgb(255, 255, 255);
+    }
+
+    .hero p {
+      margin-top: 25px;
+      font-size: 18px;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+
+    .hero-btn {
+      margin-top: 35px;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #00f2ff, #ff00c8);
+      color: #000;
+      cursor: pointer;
+      transition: 0.4s ease;
+    }
+
+    .hero-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px #00f2ff;
+    }
+
+    /* ================= FLEX ================= */
+    .flex-section .card:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+    }
+
+    /* ================= GLOW LETTER ================= */
+    .glow-section {
+      background: #080808;
+    }
+
+    .glow-title {
+      background: linear-gradient(90deg, #ffffff, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px #e9e9e9;
+    }
+
+    .glow-card {
+      border: 2px solid rgba(0, 255, 255, 0.3);
+    }
+
+    .glow-card:hover {
+      box-shadow: 0 0 40px #00f2ff;
+      transform: translateY(-6px);
+    }
+
+    /* ================= NEON ================= */
+    .neon-section {
+      background: #050505;
+    }
+
+    .neon-title {
+      font-size: 40px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      text-shadow: 0 0 30px #ff00c8;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.85;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .neon-card {
+      border: 2px solid #ff00c8;
+    }
+
+    .neon-card:hover {
+      box-shadow: 0 0 45px #ff00c8;
+      transform: translateY(-6px);
+    }
+
+    /* ================= VIDEO ================= */
+    .video-wrapper {
+      aspect-ratio: 4/3;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      padding: 60px 8%;
+      text-align: center;
+      border-top: 1px solid #222;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+
+    /* ================= MODAL ================= */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 2000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 12px;
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* ================= REVEAL ================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width:768px) {
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .section {
+        padding: 80px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="back-btn" onclick="history.back()">← Back</button>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="/hero images/printing3.jpg" class="hero-bg">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Flex & Letter Design Projects</h1>
+      <p>High-impact flex banners, glow letters, hoardings, neon creatives and LED screen videos crafted with bold
+        visual branding presence.</p>
+      <button class="hero-btn" onclick="scrollToSection()">View Projects</button>
+    </div>
+  </section>
+
+  <!-- FLEX -->
+  <section class="section flex-section reveal" id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Flex & Hoardings</h2>
+      <p class="section-desc">Large-scale outdoor branding designed to dominate attention.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <img src="/flex and neons/WhatsApp Image 2026-03-02 at 4.05.25 PM.jpeg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Flex Banner</div>
+      </div>
+      <div class="card">
+        <img src="/flex and neons/WhatsApp Image 2026-03-02 at 4.05.26 PM.jpeg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Hoarding</div>
+      </div>
+      <div class="card">
+        <img src="/flex and neons/WhatsApp Image 2026-03-01 at 1.40.16 PM.jpeg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Poster</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOW LETTER -->
+  <section class="section glow-section reveal">
+    <div class="section-header">
+      <h2 class="section-title glow-title">Glow Letter & 3D Signage</h2>
+      <p class="section-desc">Premium illuminated signage for storefronts and commercial branding.</p>
+    </div>
+    <div class="grid">
+      <div class="card glow-card">
+        <img src="/flex and neons/LETTER1.jpg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Front Lit Letter</div>
+      </div>
+      <div class="card glow-card">
+        <img src="/flex and neons/LETTER-2.jpg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Backlit 3D</div>
+      </div>
+      <div class="card glow-card">
+        <img src="/flex and neons/LETTER 3.jpg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Backlit 3D</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEON -->
+  <section class="section neon-section reveal">
+    <div class="section-header">
+      <h2 class="neon-title">Neon Signs Collection</h2>
+      <p class="section-desc">Creative neon installations with strong aesthetic impact.</p>
+    </div>
+    <div class="grid">
+      <div class="card neon-card">
+        <img src="/flex and neons/WhatsApp Image 2026-03-02 at 6.26.31 PM.jpeg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Custom Neon</div>
+      </div>
+      <div class="card neon-card">
+        <img src="/flex and neons/WhatsApp Image 2026-03-02 at 6.49.07 PM.jpeg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Restaurant Neon</div>
+      </div>
+      <div class="card neon-card">
+        <img src="/flex and neons/basu gas services.jpg">
+        <button class="card-fullscreen">⛶</button>
+        <div class="card-text">Restaurant Neon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LED VIDEOS -->
+  <section class="section reveal">
+    <div class="section-header">
+      <h2 class="section-title">LED Screen Videos</h2>
+      <p class="section-desc">Motion creatives optimized for LED displays.</p>
+    </div>
+    <div class="grid">
+      <div class="video-wrapper"><video src="/flex and neons/banik.mp4" controls muted autoplay></video></div>
+      <div class="video-wrapper"><video src="/flex and neons/lcd.mp4" controls muted autoplay></video></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Niladri Studio | Branding Portfolio
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <img id="modalImg">
+  </div>
+
+  <script>
+    function scrollToSection() {
+      document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+    }
+
+    window.addEventListener("scroll", function () {
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.classList.add("active");
+        }
+      });
+    });
+
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+
+    document.querySelectorAll(".card-fullscreen").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const img = btn.parentElement.querySelector("img");
+        modal.classList.add("active");
+        modalImg.src = img.src;
+      });
+    });
+
+    modal.addEventListener("click", () => {
+      modal.classList.remove("active");
+    });
+  </script>
+
+</body>
+
+</html>

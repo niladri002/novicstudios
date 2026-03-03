@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utsav Electronics – Case Study</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --blue:#1656C0;
+  --red:#E02B2B;
+  --yellow:#ffffff;
+  --dark:#111111;
+  --white:#ffffff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--yellow);
+  color:var(--dark);
+  overflow-x:hidden;
+}
+
+/* ===== FLOATING BACK BUTTON ===== */
+
+.floating-back{
+  position:fixed;
+  top:30px;
+  left:30px;
+  padding:8px 18px;
+  background:var(--white);
+  color:var(--dark);
+  text-decoration:none;
+  border-radius:25px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  font-size:0.9rem;
+  z-index:1000;
+  transition:.3s ease;
+}
+
+.floating-back:hover{
+  background:var(--red);
+  color:var(--white);
+}
+
+/* ===== HERO ===== */
+
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:120px 8%;
+  gap:60px;
+}
+
+.hero-text{
+  width:50%;
+}
+
+.hero-text h1{
+  font-size:58px;
+  color:var(--red);
+  margin-bottom:20px;
+}
+
+.hero-text p{
+  font-size:18px;
+  line-height:1.6;
+  max-width:500px;
+}
+
+.hero-image{
+  width:50%;
+}
+
+.hero-image img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.18);
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+  padding:100px 8%;
+}
+
+.section-title{
+  font-size:40px;
+  color:var(--blue);
+  margin-bottom:15px;
+}
+
+.section-sub{
+  max-width:600px;
+  margin-bottom:50px;
+  line-height:1.6;
+}
+
+/* ===== IMAGE GRID ===== */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.grid img{
+  width:100%;
+  height: 500px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 20px 45px rgba(0,0,0,0.15);
+  transition:.4s ease;
+}
+
+.grid img:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 30px 70px rgba(0,0,0,0.22);
+}
+
+/* ===== MOTION SECTION ===== */
+
+.motion{
+  text-align:center;
+}
+
+.motion video{
+  width:100%;
+  max-width:900px;
+  margin-top:40px;
+  border-radius:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.2);
+}
+
+/* ===== CTA ===== */
+
+.cta{
+  background:var(--blue);
+  color:var(--white);
+  text-align:center;
+  padding:100px 20px;
+}
+
+.cta h2{
+  font-size:38px;
+  margin-bottom:25px;
+}
+
+.cta a{
+  display:inline-block;
+  padding:14px 40px;
+  background:var(--red);
+  color:var(--white);
+  text-decoration:none;
+  border-radius:40px;
+  font-weight:600;
+  transition:.3s ease;
+}
+
+.cta a:hover{
+  background:var(--white);
+  color:var(--blue);
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+  background:var(--dark);
+  color:var(--white);
+  text-align:center;
+  padding:40px;
+  font-size:14px;
+}
+
+ /* STORE LOCATION */
+        .store-location {
+            background: #f7f7f7;
+        }
+
+        .location-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .location-details h3 {
+            color: #f84612;
+            margin-bottom: 15px;
+        }
+
+        .location-details p {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .map-container iframe {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        @media(max-width:768px) {
+            .location-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .hero-text,
+  .hero-image{
+    width:100%;
+  }
+
+  .hero-image img{
+    height:350px;
+  }
+
+  .hero-text h1{
+    font-size:42px;
+  }
+
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="floating-back">← Back</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Utsav Electronics</h1>
+    <p>
+      A complete branding and promotional system built for a modern
+      Bengali electronics retailer — combining bold identity,
+      high-impact social campaigns, and large-format outdoor flex designs.
+    </p>
+  </div>
+
+  <div class="hero-image">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/hero.png" alt="Utsav Electronics Hero">
+  </div>
+</section>
+
+<!-- VISUAL IDENTITY -->
+<section>
+  <h2 class="section-title">Visual Identity</h2>
+  <p class="section-sub">
+    Logo usage, color hierarchy, typography system,
+    and a structured brand presentation approach.
+  </p>
+
+  <div class="grid">
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/download (90).png" alt="">
+    <div class="image-caption">Shop front 1</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/download (89).png" alt="">
+    <div class="image-caption">Shop front 2</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/NEW THINGS UTSAV V2.jpg" alt="">
+    <div class="image-caption">Typography Hierarchy</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/utsav electrnics.jpg" alt="">
+    <div class="image-caption">Brand Mockups</div>
+  </div>
+
+</div>
+</section>
+
+<!-- SOCIAL CAMPAIGN -->
+<section>
+  <h2 class="section-title">Social Campaign</h2>
+  <p class="section-sub">
+    Festival creatives, product promotions, and retail-focused
+    engagement designs to increase footfall and conversions.
+  </p>
+
+  <div class="grid">
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/mobile for low price.jpg" alt="">
+    <div class="image-caption">Poster 1</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/WINTER OFFER.jpg" alt="">
+    <div class="image-caption">Poster 2</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/sarat chandra.jpg" alt="">
+    <div class="image-caption">Poster 3</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/poushparbon.jpg" alt="">
+    <div class="image-caption">Poster 4</div>
+  </div>
+
+</div>
+</section>
+
+<!-- OUTDOOR FLEX -->
+<section>
+  <h2 class="section-title">Outdoor Flex</h2>
+  <p class="section-sub">
+    High-visibility flex banners designed for
+    maximum street-level impact.
+  </p>
+
+  <div class="grid">
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/toto new year 26.jpg" alt="">
+    <div class="image-caption">Logo Presentation</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/WhatsApp Image 2026-03-01 at 1.40.16 PM.jpeg" alt="">
+    <div class="image-caption">Toto flex</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/pujo year 26.jpg" alt="">
+    <div class="image-caption">Typography Hierarchy</div>
+  </div>
+
+  <div class="image-card">
+    <img src="/LETEST CREATIVE OUTCOME/utsav/sales man .jpg" alt="">
+    <div class="image-caption">Brand Mockups</div>
+  </div>
+
+</div>
+</section>
+
+<!-- MOTION GRAPHICS -->
+<section class="motion">
+  <h2 class="section-title">Motion Graphics Campaign</h2>
+  <p class="section-sub">
+    Promotional animated videos designed for digital ads and
+    in-store display screens.
+  </p>
+
+  <video autoplay muted loop>
+    <source src="/LETEST CREATIVE OUTCOME/utsav/UTSAV ANIMATED LOGO.mp4" type="video/mp4">
+  </video>
+</section>
+
+
+
+ <!-- STORE LOCATION -->
+    <section class="store-location">
+        <h2 class="section-title">Store Location</h2>
+
+        <div class="location-wrapper">
+
+            <div class="location-details">
+                <h3>Utsav Electronics</h3>
+                <p><strong>Type:</strong> Electronics Appliance Store</p>
+                <p><strong>Location:</strong> Ashoknagar, West Bengal, India</p>
+                <p>
+                    Utsav Electronics is a modern Bengali retail electronics store focused on delivering trusted appliances and digital products to local customers. With a strong offline presence and high seasonal demand, the brand required a powerful visual identity and consistent promotional strategy to stand out in a competitive retail market.
+                </p>
+            </div>
+
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d69786.79873158921!2d88.5466963486328!3d22.83870409999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8ba906a6d6987%3A0x5b0409e10c70818f!2sUTSAV%20ELECTRONICS!5e1!3m2!1sen!2sin!4v1772352694095!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Let’s Build Powerful Retail Branding</h2>
+  <a href="#">Start a Project</a>
+</section>
+
+
+
+
+
+<!-- FOOTER -->
+<footer>
+  Utsav Electronics – Branding Case Study © 2026
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Media Design | Novic Studios</title>
+
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #151515;
+      --text: #ffffff;
+      --muted: #b3b3b3;
+      --accent: #00f2c3;
+      --radius: 22px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      /* push content to left */
+      text-align: left;
+      /* left align text */
+      padding: 0 8%;
+      /* give breathing space */
+      overflow: hidden;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(13, 13, 13, 0.6),
+          rgba(13, 13, 13, 0.95));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: whitesmoke;
+      font-size: 18px;
+      max-width: 520px;
+    }
+
+
+    .btn {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 14px 34px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 100px 20px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 700px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .image-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+
+    /* .reel-section {
+  padding: 120px 8%;
+  background: #0b0b0b;
+  text-align: center;
+} */
+
+    .reel-section h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .section-desc {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 60px;
+      font-size: 16px;
+    }
+
+    .reel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .reel-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      transition: 0.4s ease;
+    }
+
+    .reel-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* .reel-card video {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+} */
+
+    .reel-card video {
+      width: 100%;
+      height: 500px;
+      object-fit: contain;
+      background: #ffffff00;
+      /* prevents empty white space */
+      display: block;
+    }
+
+
+
+
+
+    /* Fullscreen Button */
+    .fullscreen-btn {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: 0.3s ease;
+    }
+
+    .fullscreen-btn:hover {
+      background: #00f0ff;
+      color: #000;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    .fullscreen-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.3s var(--ease);
+    }
+
+    .image-card:hover .fullscreen-btn {
+      opacity: 1;
+    }
+
+    .fullscreen-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+
+    .fullscreen-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .fullscreen-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s var(--ease);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background: #000;
+      padding: 60px 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="back-btn" onclick="history.back()">← Back</button>
+
+  <header class="hero reveal">
+    <img src="/hero images/social media hero.jpg" alt="Social Media Design Hero">
+    <div class="hero-content">
+      <h1>Social Media Design</h1>
+      <p>
+        Content designed for engagement, performance, and visual consistency
+        across platforms.
+      </p>
+      <a href="#carousels" class="btn">View Work</a>
+    </div>
+  </header>
+
+  <!-- 1. CAROUSELS -->
+  <section id="carousels" class="reveal">
+    <h2>Instagram Carousel Designs</h2>
+    <p class="section-desc">Education • Storytelling • Engagement</p>
+    <div class="image-grid">
+      <div class="image-card"><img src="/instagram carusial/Adeline instagram carousel phone mockup.jpg"
+          alt="Adeline Instagram Carousel"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/instagram carusial/cha o kotha instagram carousel phone mockup.jpg"
+          alt="Cha O Kotha Instagram Carousel"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/instagram carusial/ELVYN instagram carousel phone mockup.jpg"
+          alt="ELVYN Instagram Carousel"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/instagram carusial/julia instagram carousel phone mockup.jpg"
+          alt="Julia Instagram Carousel"><button class="fullscreen-btn">⛶</button></div>
+    </div>
+  </section>
+
+  <!-- 2. FEED POSTS -->
+  <section class="reveal">
+    <h2>Feed Post Designs</h2>
+    <p class="section-desc">Daily visual communication</p>
+    <div class="image-grid">
+      <div class="image-card"><img src="/FEED DESIGN/dj night.jpg"><button class="fullscreen-btn">⛶</button></div>
+      <!-- <div class="image-card"><img src="/FEED DESIGN/shop.jpg"><button class="fullscreen-btn">⛶</button></div> -->
+      <div class="image-card"><img src="/FEED DESIGN/upvc window.jpg"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/FEED DESIGN//AIRFRYER1.psd.jpg"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/FEED DESIGN//WINTER OFFER avinandan.jpg"><button
+          class="fullscreen-btn">⛶</button></div>
+    </div>
+  </section>
+
+  <!-- 3. FESTIVE -->
+  <section class="reveal">
+    <h2>Festive & Seasonal Creatives</h2>
+    <p class="section-desc">Cultural relevance & high reach</p>
+    <div class="image-grid">
+      <div class="image-card"><img src="/festiveal creative/jagatdtri puja.jpg"><button
+          class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/festiveal creative/kutchina chymny.jpg"><button
+          class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/festiveal creative/REAL ESTATE dewali.jpg"><button
+          class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/festiveal creative/vsteel christmas.jpg"><button
+          class="fullscreen-btn">⛶</button></div>
+    </div>
+  </section>
+
+  <!-- 4. ADS -->
+  <section class="reveal">
+    <h2>Ad Campaign Creatives</h2>
+    <p class="section-desc">Performance-driven social ads</p>
+    <div class="image-grid">
+      <div class="image-card"><img src="/ad campaign/no limits.jpg"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/ad campaign/tea brand.jpg"><button class="fullscreen-btn">⛶</button></div>
+      <!-- <div class="image-card"><img src="/ad campaign/ad3.jpg"><button class="fullscreen-btn">⛶</button></div> -->
+    </div>
+  </section>
+
+  <!-- 5. EVENT
+<section class="reveal">
+  <h2>Event • Club • DJ Creatives</h2>
+  <p class="section-desc">High-impact nightlife visuals</p>
+  <div class="image-grid">
+    <div class="image-card"><img src="/social/event1.jpg"><button class="fullscreen-btn">⛶</button></div>
+    <div class="image-card"><img src="/social/event2.jpg"><button class="fullscreen-btn">⛶</button></div>
+  </div>
+</section> -->
+
+  <!-- 6. PRODUCT -->
+  <section class="reveal">
+    <h2>Product & E-commerce Creatives</h2>
+    <p class="section-desc">Selling-focused social visuals</p>
+    <div class="image-grid">
+      <div class="image-card"><img src="/e-commarce product/komori packeging.jpg"><button
+          class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/e-commarce product/nike ads.png"><button class="fullscreen-btn">⛶</button></div>
+    </div>
+  </section>
+
+  <!-- 7. REELS 
+  <section class="reveal">
+    <h2>Reels & Thumbnail Covers</h2>
+    <p class="section-desc">Click & watch optimization</p>
+    <div class="image-grid">
+      <div class="image-card"><img src="/social/reel1.jpg"><button class="fullscreen-btn">⛶</button></div>
+      <div class="image-card"><img src="/social/reel2.jpg"><button class="fullscreen-btn">⛶</button></div>
+    </div>
+  </section>
+-->
+
+  <!-- animated reel section -->
+
+  <section class="reel-section reveal">
+    <h2>Reels Showcase</h2>
+    <p class="section-desc">Auto-play optimized short-form content</p>
+
+    <div class="reel-grid">
+
+      <!-- Reel 1 -->
+      <div class="reel-card">
+        <video src="/animated videos/final.mp4" autoplay loop playsinline controls muted></video>
+        <button class="fullscreen-btn">⛶</button>
+      </div>
+
+      <!-- Reel 2 -->
+      <div class="reel-card">
+        <video src="/animated videos/Sequence 03.mp4" autoplay loop playsinline controls muted></video>
+        <button class="fullscreen-btn">⛶</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+    <div>© Novic Studios — Social Media Design</div>
+  </footer>
+
+  <div class="fullscreen-overlay" id="overlay">
+    <img id="overlayImg">
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add("active"));
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    const overlay = document.getElementById("overlay");
+    const overlayImg = document.getElementById("overlayImg");
+
+    document.querySelectorAll(".image-card").forEach(card => {
+      const btn = card.querySelector(".fullscreen-btn");
+      const img = card.querySelector("img");
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        overlayImg.src = img.src;
+        overlay.classList.add("active");
+      });
+    });
+
+    overlay.addEventListener("click", () => overlay.classList.remove("active"));
+
+
+
+
+
+
+
+
+
+
+document.querySelectorAll(".fullscreen-btn").forEach(button => {
+  button.addEventListener("click", function () {
+    const video = this.parentElement.querySelector("video");
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) {
+      video.msRequestFullscreen();
+    }
+  });
+});
+
+  </script>
+
+</body>
+
+</html>
